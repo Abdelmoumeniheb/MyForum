@@ -172,8 +172,8 @@ namespace MyForum.DAL.Migrations
                     b.Property<int>("IdPost")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdUsercreated")
-                        .HasColumnType("int");
+                    b.Property<string>("IdUsercreated")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("PostIdPost")
                         .HasColumnType("int");
@@ -193,19 +193,21 @@ namespace MyForum.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdForum"), 1L, 1);
 
-                    b.Property<int>("IdUsercreated")
-                        .HasColumnType("int");
-
                     b.Property<string>("NameForum")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("PictureForum")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("PictureForum")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PublishedDateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("IdForum");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Forums");
                 });
@@ -227,8 +229,8 @@ namespace MyForum.DAL.Migrations
                     b.Property<int>("IdForum")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdUsercreated")
-                        .HasColumnType("int");
+                    b.Property<string>("IdUsercreated")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PublishedDateTime")
                         .HasColumnType("datetime2");
@@ -291,8 +293,8 @@ namespace MyForum.DAL.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<byte[]>("ProfilePicture")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("ProfilePicture")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -380,6 +382,15 @@ namespace MyForum.DAL.Migrations
                     b.Navigation("Post");
                 });
 
+            modelBuilder.Entity("MyForum.BL.Entities.Forum", b =>
+                {
+                    b.HasOne("MyForum.BL.Entities.User", "User")
+                        .WithMany("Forums")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("MyForum.BL.Entities.Post", b =>
                 {
                     b.HasOne("MyForum.BL.Entities.Forum", "Forum")
@@ -397,6 +408,11 @@ namespace MyForum.DAL.Migrations
             modelBuilder.Entity("MyForum.BL.Entities.Post", b =>
                 {
                     b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("MyForum.BL.Entities.User", b =>
+                {
+                    b.Navigation("Forums");
                 });
 #pragma warning restore 612, 618
         }

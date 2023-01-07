@@ -10,10 +10,11 @@ namespace MyForum.BL.Entities{
     {
         [Key]
         public int IdForum { get; set; }
-        public string? NameForum { get; set; }
-        public byte[]? PictureForum { get; set; }
-        public int IdUsercreated { get; set; }
+        public string NameForum { get; set; }
+        public string? PictureForum { get; set; }
         public DateTime PublishedDateTime { get; set; }
+        public string? UserId { get; set; }
+        public User? User { get; set; }
         public virtual List<Post>? Posts { get; set; } 
     }
 }

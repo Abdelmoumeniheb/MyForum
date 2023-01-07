@@ -19,10 +19,10 @@
                 @Html.DisplayNameFor(model => model.PictureForum)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdUsercreated)
+                @Html.DisplayNameFor(model => model.PublishedDateTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PublishedDateTime)
+                @Html.DisplayNameFor(model => model.User.Email)
             </th>
             <th></th>
         </tr>
@@ -34,13 +34,13 @@
                 @Html.DisplayFor(modelItem => item.NameForum)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PictureForum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdUsercreated)
+                <img src="Images/@item.PictureForum" style="height:30px;width:30px;" >
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PublishedDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdForum">Edit</a> |

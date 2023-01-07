@@ -14,7 +14,7 @@ namespace MyForum.BL.Entities
     public string? Title { get; set; }
     public string? Content { get; set; }
     public DateTime PublishedDateTime { get; set; }
-    public int IdUsercreated { get; set; }
+    public string? IdUsercreated { get; set; }
     public virtual List<Comment>? Comments { get; set; }
     public int IdForum { get; set; }
     public Forum? Forum { get; set; }

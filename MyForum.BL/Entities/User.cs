@@ -12,6 +12,7 @@ namespace MyForum.BL.Entities
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public int? UsernameChangeLimit { get; set; } = 10;
-        public byte[]? ProfilePicture { get; set; }
+        public string? ProfilePicture { get; set; }
+        public virtual List<Forum> Forums { get; set; }
     }
 }
