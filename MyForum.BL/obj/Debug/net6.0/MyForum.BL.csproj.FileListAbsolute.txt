@@ -1,0 +1,12 @@
+C:\Users\Asus\Desktop\IRM-2\C#\Learn\1\MyForum\MyForum.BL\bin\Debug\net6.0\MyForum.BL.deps.json
+C:\Users\Asus\Desktop\IRM-2\C#\Learn\1\MyForum\MyForum.BL\bin\Debug\net6.0\MyForum.BL.dll
+C:\Users\Asus\Desktop\IRM-2\C#\Learn\1\MyForum\MyForum.BL\bin\Debug\net6.0\MyForum.BL.pdb
+C:\Users\Asus\Desktop\IRM-2\C#\Learn\1\MyForum\MyForum.BL\obj\Debug\net6.0\MyForum.BL.csproj.AssemblyReference.cache
+C:\Users\Asus\Desktop\IRM-2\C#\Learn\1\MyForum\MyForum.BL\obj\Debug\net6.0\MyForum.BL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Asus\Desktop\IRM-2\C#\Learn\1\MyForum\MyForum.BL\obj\Debug\net6.0\MyForum.BL.AssemblyInfoInputs.cache
+C:\Users\Asus\Desktop\IRM-2\C#\Learn\1\MyForum\MyForum.BL\obj\Debug\net6.0\MyForum.BL.AssemblyInfo.cs
+C:\Users\Asus\Desktop\IRM-2\C#\Learn\1\MyForum\MyForum.BL\obj\Debug\net6.0\MyForum.BL.csproj.CoreCompileInputs.cache
+C:\Users\Asus\Desktop\IRM-2\C#\Learn\1\MyForum\MyForum.BL\obj\Debug\net6.0\MyForum.BL.dll
+C:\Users\Asus\Desktop\IRM-2\C#\Learn\1\MyForum\MyForum.BL\obj\Debug\net6.0\refint\MyForum.BL.dll
+C:\Users\Asus\Desktop\IRM-2\C#\Learn\1\MyForum\MyForum.BL\obj\Debug\net6.0\MyForum.BL.pdb
+C:\Users\Asus\Desktop\IRM-2\C#\Learn\1\MyForum\MyForum.BL\obj\Debug\net6.0\ref\MyForum.BL.dll

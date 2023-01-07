@@ -1,0 +1,48 @@
+﻿@model MyForum.BL.Entities.Forum
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Forum</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NameForum" class="control-label"></label>
+                <input asp-for="NameForum" class="form-control" />
+                <span asp-validation-for="NameForum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PictureForum" class="control-label"></label>
+                <input asp-for="PictureForum" class="form-control" />
+                <span asp-validation-for="PictureForum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdUsercreated" class="control-label"></label>
+                <input asp-for="IdUsercreated" class="form-control" />
+                <span asp-validation-for="IdUsercreated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PublishedDateTime" class="control-label"></label>
+                <input asp-for="PublishedDateTime" class="form-control" />
+                <span asp-validation-for="PublishedDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
