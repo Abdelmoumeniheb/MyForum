@@ -1,27 +1,86 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using MyForum.BL.Entities;
+@using System.Security.Claims;
+@using System.Net.Mail
+@using Microsoft.EntityFrameworkCore;
+@using MyForum.BL.Entities;
+@using MyForum.DAL;
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
-
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
+            <li class="nav-item" style="align-self: center;"> @if (UserManager.GetUserAsync(User).Result.ProfilePicture != null)
+            {
+                        <img style="width:40px;height:40px; object-fit:cover; border-radius:30px" src="wwwroot/Images/,@(UserManager.GetUserAsync(User).Result.ProfilePicture))">
+            } </li> 
+            <li class="nav-item"> 
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+            </li>
+           
+
+            @*@{
+                var userNameClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+                MailAddress address = new MailAddress(userNameClaim.Value);
+                string userName = address.User;
+                if (userName != null)
+                {
+                    <li>
+                    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@userName</a>
+                    </li>
+                }
+            }*@
+
     <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+          
+            <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity?.Name!</a>
     </li>
+        @*<li class ="" class="nav-item">
+                            <button type="button" class="btn btn-outline-primary" onclick="location.href='/Identity/Account/Manage/ChangePassword'">
+                    <div class="d-flex align-items-center">   
+                        <span class="material-symbols-outlined">
+                            person_add
+                        </span>
+                            ChangePasswordModel
+                    </div>
+                </button>
+            </li>*@
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                    <button  type="submit" class="nav-link btn btn-danger text-dark ">Logout</button>
         </form>
     </li>
 }
 else
 {
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
+
+<div class="container">
+    <div class="row g-2">
+    <div class="col">
+        <li class ="" class="nav-item">
+                <button type="button" class="btn btn-outline-primary" onclick="location.href='/Identity/Account/Register'">
+                <div class="d-flex align-items-center">   
+                    <span class="material-symbols-outlined">
+                        person_add
+                    </span>
+                    Register
+                </div>
+            </button>
+        </li>
+            </div>
+                <div class="col">
+        <li class="nav-item">
+            <button type="button" class="btn btn-outline-success" onclick="location.href='/Identity/Account/Login'">
+                <div class="d-flex align-items-center">
+                        <span class="material-symbols-outlined">
+                        login
+                    </span>
+                    Login
+                </div>
+            </button>
+        </li>
+    </div>
+    </div>
+</div>
 }
 </ul>

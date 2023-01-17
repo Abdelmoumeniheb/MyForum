@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MyForum.Web.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,300,0,0" />
 </head>
 <body>
     <header>
@@ -23,7 +24,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="index">Forums</a>
                         </li>
                     </ul>
-                    <partial name="_LoginPartial" />
+                   <div>
+                        <partial name="_LoginPartial" />
+                    </div>
+                  
                 </div>
             </div>
         </nav>

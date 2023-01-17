@@ -30,22 +30,22 @@
             @Html.DisplayFor(model => model.PublishedDateTime)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdUsercreated)
+            @Html.DisplayNameFor(model => model.UserId)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdUsercreated)
+            @Html.DisplayFor(model => model.UserId)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdForum)
+            @Html.DisplayNameFor(model => model.ForumId)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdForum)
+            @Html.DisplayFor(model => model.ForumId)
         </dd>
     </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="IdPost" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index" asp-route-id="@Model.ForumId">Back to List</a>
     </form>
 </div>

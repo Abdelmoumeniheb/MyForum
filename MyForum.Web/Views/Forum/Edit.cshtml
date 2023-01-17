@@ -20,18 +20,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="PictureForum" class="control-label"></label>
-                <input asp-for="PictureForum" class="form-control" />
+                <img src="@Url.Content("~/Images/" + Model.PictureForum)" style="height:100px;width:100px;" >
+                <input asp-for="PictureForum" class="form-control" type="file" name="file"/>
                 <span asp-validation-for="PictureForum" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PublishedDateTime" class="control-label"></label>
-                <input asp-for="PublishedDateTime" class="form-control" />
-                <span asp-validation-for="PublishedDateTime" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -46,4 +37,7 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+         <script>
+                    console.log(@Model.PictureForum);
+            </script>
 }

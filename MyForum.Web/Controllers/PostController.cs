@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -18,13 +19,14 @@ namespace MyForum.Web.Controllers
         {
             _context = context;
         }
-
         // GET: Post
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
-              return View(await _context.Posts.ToListAsync());
-        }
+            var Result = _context.Posts.Include(x => x.User).OrderByDescending(x => x.PublishedDateTime).Where(p => p.ForumId == id).ToListAsync();
+            ViewData["ForumId"] = id;
 
+            return View(await Result);
+        }
         // GET: Post/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -44,7 +46,7 @@ namespace MyForum.Web.Controllers
         }
 
         // GET: Post/Create
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
             return View();
         }
@@ -54,17 +56,20 @@ namespace MyForum.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPost,Title,Content,PublishedDateTime,IdUsercreated,IdForum")] Post post)
+        public async Task<IActionResult> Create(int id,[Bind("IdPost,Title,Content,PublishedDateTime,UserId,IdForum")] Post post)
         {
             if (ModelState.IsValid)
             {
+                Console.WriteLine("id     " + id);
+                post.ForumId = id ;
+                post.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                post.PublishedDateTime = DateTime.Now;
                 _context.Add(post);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("ViewPostsForum", "Forum", new { id = id });
             }
             return View(post);
         }
-
         // GET: Post/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -86,23 +91,25 @@ namespace MyForum.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdPost,Title,Content,PublishedDateTime,IdUsercreated,IdForum")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("IdPost,Title,Content,PublishedDateTime,UserId,IdForum")] Post post)
         {
-            if (id != post.IdPost)
+            var existingPost = _context.Posts.Find(id);
+            if (existingPost == null)
             {
                 return NotFound();
             }
-
+            existingPost.Title = post.Title;
+            existingPost.Content = post.Content;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(post);
+                    _context.Update(existingPost);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PostExists(post.IdPost))
+                    if (!PostExists(existingPost.IdPost))
                     {
                         return NotFound();
                     }
@@ -111,7 +118,7 @@ namespace MyForum.Web.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("ViewPostsForum", "Forum", new { id = existingPost.ForumId });
             }
             return View(post);
         }
@@ -148,9 +155,8 @@ namespace MyForum.Web.Controllers
             {
                 _context.Posts.Remove(post);
             }
-            
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("ViewPostsForum", "Forum", new { id = post.ForumId });
         }
 
         private bool PostExists(int id)

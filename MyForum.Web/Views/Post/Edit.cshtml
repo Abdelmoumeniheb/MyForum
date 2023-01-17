@@ -24,21 +24,6 @@
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PublishedDateTime" class="control-label"></label>
-                <input asp-for="PublishedDateTime" class="form-control" />
-                <span asp-validation-for="PublishedDateTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdUsercreated" class="control-label"></label>
-                <input asp-for="IdUsercreated" class="form-control" />
-                <span asp-validation-for="IdUsercreated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdForum" class="control-label"></label>
-                <input asp-for="IdForum" class="form-control" />
-                <span asp-validation-for="IdForum" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -46,7 +31,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-route-id="@Model.ForumId">Back to List</a>
 </div>
 
 @section Scripts {

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HLFMIq5Pj+/YmejjqWJD9GAZ3pJ80NXjZPqretSSJNM=",
+  "Hash": "kKubhDweMCjZclOb2Igueu7u67BR40cNIICbxluM3qk=",
   "Source": "MyForum.Web",
   "BasePath": "_content/MyForum.Web",
   "Mode": "Default",
@@ -1105,12 +1105,12 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\Asus\\Desktop\\IRM-2\\C#\\Learn\\1\\MyForum\\MyForum.Web\\wwwroot\\Images\\3fa549c8-5069-4073-9784-15cb46396cfb.jfif",
+      "Identity": "C:\\Users\\Asus\\Desktop\\IRM-2\\C#\\Learn\\1\\MyForum\\MyForum.Web\\wwwroot\\Images\\6858f49a-4810-412a-aee6-688eff19eefa.jpg",
       "SourceId": "MyForum.Web",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Asus\\Desktop\\IRM-2\\C#\\Learn\\1\\MyForum\\MyForum.Web\\wwwroot\\",
       "BasePath": "_content/MyForum.Web",
-      "RelativePath": "Images/3fa549c8-5069-4073-9784-15cb46396cfb.jfif",
+      "RelativePath": "Images/6858f49a-4810-412a-aee6-688eff19eefa.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1119,15 +1119,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\3fa549c8-5069-4073-9784-15cb46396cfb.jfif"
+      "OriginalItemSpec": "wwwroot\\Images\\6858f49a-4810-412a-aee6-688eff19eefa.jpg"
     },
     {
-      "Identity": "C:\\Users\\Asus\\Desktop\\IRM-2\\C#\\Learn\\1\\MyForum\\MyForum.Web\\wwwroot\\Images\\49b614d3-6829-4351-811d-391d469067a4.jfif",
+      "Identity": "C:\\Users\\Asus\\Desktop\\IRM-2\\C#\\Learn\\1\\MyForum\\MyForum.Web\\wwwroot\\Images\\ca1cb867-82c9-4117-977c-5aedb57001bf.jpg",
       "SourceId": "MyForum.Web",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Asus\\Desktop\\IRM-2\\C#\\Learn\\1\\MyForum\\MyForum.Web\\wwwroot\\",
       "BasePath": "_content/MyForum.Web",
-      "RelativePath": "Images/49b614d3-6829-4351-811d-391d469067a4.jfif",
+      "RelativePath": "Images/ca1cb867-82c9-4117-977c-5aedb57001bf.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1136,15 +1136,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\49b614d3-6829-4351-811d-391d469067a4.jfif"
+      "OriginalItemSpec": "wwwroot\\Images\\ca1cb867-82c9-4117-977c-5aedb57001bf.jpg"
     },
     {
-      "Identity": "C:\\Users\\Asus\\Desktop\\IRM-2\\C#\\Learn\\1\\MyForum\\MyForum.Web\\wwwroot\\Images\\DefaultImage.jpg",
+      "Identity": "C:\\Users\\Asus\\Desktop\\IRM-2\\C#\\Learn\\1\\MyForum\\MyForum.Web\\wwwroot\\Images\\deafaultforum.jpg",
       "SourceId": "MyForum.Web",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Asus\\Desktop\\IRM-2\\C#\\Learn\\1\\MyForum\\MyForum.Web\\wwwroot\\",
       "BasePath": "_content/MyForum.Web",
-      "RelativePath": "Images/DefaultImage.jpg",
+      "RelativePath": "Images/deafaultforum.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1153,7 +1153,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\DefaultImage.jpg"
+      "OriginalItemSpec": "wwwroot\\Images\\deafaultforum.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Asus\\Desktop\\IRM-2\\C#\\Learn\\1\\MyForum\\MyForum.Web\\wwwroot\\Images\\Userdafault.png",
+      "SourceId": "MyForum.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Asus\\Desktop\\IRM-2\\C#\\Learn\\1\\MyForum\\MyForum.Web\\wwwroot\\",
+      "BasePath": "_content/MyForum.Web",
+      "RelativePath": "Images/Userdafault.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Userdafault.png"
     },
     {
       "Identity": "C:\\Users\\Asus\\Desktop\\IRM-2\\C#\\Learn\\1\\MyForum\\MyForum.Web\\wwwroot\\js\\site.js",

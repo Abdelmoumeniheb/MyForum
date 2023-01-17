@@ -21,6 +21,8 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using MyForum.Web.Models;
 using MyForum.BL.Entities;
+using System.Net.Mail;
+
 namespace MyForum.Web.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
@@ -37,7 +39,12 @@ namespace MyForum.Web.Areas.Identity.Pages.Account
             IUserStore<User> userStore,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender
+            //[Required]
+            //[Display(Name = "Username")]
+            //public string UserName { get; set; }
+
+            )
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -77,6 +84,9 @@ namespace MyForum.Web.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
+            [Display(Name = "UserN")]
+            public string UserN { get; set; }
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -114,7 +124,13 @@ namespace MyForum.Web.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
+                MailAddress address = new MailAddress(Input.Email); 
+                string userName = address.User;
+                var user = new User
+                {
+                    UserN = Input.UserN,
+                    Email = Input.Email
+                };
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

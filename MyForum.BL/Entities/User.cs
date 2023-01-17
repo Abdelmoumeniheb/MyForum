@@ -9,10 +9,9 @@ namespace MyForum.BL.Entities
 {
     public class User : IdentityUser 
     {
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-        public int? UsernameChangeLimit { get; set; } = 10;
-        public string? ProfilePicture { get; set; }
+        public string? UserN { get; set; }
+        public string? ProfilePicture { get; set; } = "Userdafault.png";
         public virtual List<Forum> Forums { get; set; }
+        public virtual List<Post> Posts { get; set; }
     }
 }
