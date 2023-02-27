@@ -12,14 +12,14 @@ using MyForum.DAL;
 namespace MyForum.DAL.Migrations
 {
     [DbContext(typeof(MyForumDbContext))]
-    [Migration("20230107141104_init")]
-    partial class init
+    [Migration("20230221084657_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.12")
+                .HasAnnotation("ProductVersion", "6.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -180,9 +180,14 @@ namespace MyForum.DAL.Migrations
                     b.Property<int?>("PostIdPost")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("IdComment");
 
                     b.HasIndex("PostIdPost");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -195,19 +200,22 @@ namespace MyForum.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdForum"), 1L, 1);
 
-                    b.Property<string>("IdUsercreated")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("NameForum")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("PictureForum")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("PictureForum")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PublishedDateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("IdForum");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Forums");
                 });
@@ -221,26 +229,27 @@ namespace MyForum.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPost"), 1L, 1);
 
                     b.Property<string>("Content")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ForumIdForum")
+                    b.Property<int>("ForumId")
                         .HasColumnType("int");
-
-                    b.Property<int>("IdForum")
-                        .HasColumnType("int");
-
-                    b.Property<string>("IdUsercreated")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PublishedDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdPost");
 
-                    b.HasIndex("ForumIdForum");
+                    b.HasIndex("ForumId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
@@ -263,12 +272,6 @@ namespace MyForum.DAL.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -302,12 +305,12 @@ namespace MyForum.DAL.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
+                    b.Property<string>("UserN")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<int?>("UsernameChangeLimit")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -379,16 +382,39 @@ namespace MyForum.DAL.Migrations
                         .WithMany("Comments")
                         .HasForeignKey("PostIdPost");
 
+                    b.HasOne("MyForum.BL.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Post");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MyForum.BL.Entities.Forum", b =>
+                {
+                    b.HasOne("MyForum.BL.Entities.User", "User")
+                        .WithMany("Forums")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("MyForum.BL.Entities.Post", b =>
                 {
                     b.HasOne("MyForum.BL.Entities.Forum", "Forum")
                         .WithMany("Posts")
-                        .HasForeignKey("ForumIdForum");
+                        .HasForeignKey("ForumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyForum.BL.Entities.User", "User")
+                        .WithMany("Posts")
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Forum");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("MyForum.BL.Entities.Forum", b =>
@@ -399,6 +425,13 @@ namespace MyForum.DAL.Migrations
             modelBuilder.Entity("MyForum.BL.Entities.Post", b =>
                 {
                     b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("MyForum.BL.Entities.User", b =>
+                {
+                    b.Navigation("Forums");
+
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

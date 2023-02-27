@@ -12,7 +12,17 @@ html {
   position: relative;
   min-height: 100%;
 }
-
 body {
   margin-bottom: 60px;
+}
+/*.modal-backdrop {
+    background-color: transparent;
+}*/
+.modal-dialog {
+    width: 180px;
+    max-width: none;
+}
+
+.modal-content {
+    height: 160px;
 }

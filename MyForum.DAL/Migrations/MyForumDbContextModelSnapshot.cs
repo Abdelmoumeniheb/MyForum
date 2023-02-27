@@ -17,7 +17,7 @@ namespace MyForum.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.12")
+                .HasAnnotation("ProductVersion", "6.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -178,9 +178,14 @@ namespace MyForum.DAL.Migrations
                     b.Property<int?>("PostIdPost")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("IdComment");
 
                     b.HasIndex("PostIdPost");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -289,8 +294,8 @@ namespace MyForum.DAL.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ProfilePicture")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("ProfilePicture")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -375,7 +380,13 @@ namespace MyForum.DAL.Migrations
                         .WithMany("Comments")
                         .HasForeignKey("PostIdPost");
 
+                    b.HasOne("MyForum.BL.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Post");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("MyForum.BL.Entities.Forum", b =>

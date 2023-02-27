@@ -28,6 +28,11 @@ namespace MyForum.Web.Controllers
             return View(await Result);
         }
         // GET: Post/Details/5
+        public ActionResult ViewCommentsPost(int id)
+        {
+            Console.WriteLine(id);
+            return RedirectToAction("Index", "Comments", new { id = id });
+        }
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Posts == null)
@@ -41,7 +46,6 @@ namespace MyForum.Web.Controllers
             {
                 return NotFound();
             }
-
             return View(post);
         }
 

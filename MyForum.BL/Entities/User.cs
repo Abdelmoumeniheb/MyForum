@@ -10,7 +10,8 @@ namespace MyForum.BL.Entities
     public class User : IdentityUser 
     {
         public string? UserN { get; set; }
-        public string? ProfilePicture { get; set; } = "Userdafault.png";
+        //public string? ProfilePicture { get; set; } = "Userdafault.png";
+        public byte[]? ProfilePicture { get; set; }
         public virtual List<Forum> Forums { get; set; }
         public virtual List<Post> Posts { get; set; }
     }

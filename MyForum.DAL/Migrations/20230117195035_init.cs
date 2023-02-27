@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyForum.DAL.Migrations
 {
-    public partial class initial1 : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,9 +28,7 @@ namespace MyForum.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UsernameChangeLimit = table.Column<int>(type: "int", nullable: true),
+                    UserN = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProfilePicture = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -50,21 +48,6 @@ namespace MyForum.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Forums",
-                columns: table => new
-                {
-                    IdForum = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    NameForum = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PictureForum = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    IdUsercreated = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Forums", x => x.IdForum);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,26 +157,52 @@ namespace MyForum.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Forums",
+                columns: table => new
+                {
+                    IdForum = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NameForum = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PictureForum = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PublishedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Forums", x => x.IdForum);
+                    table.ForeignKey(
+                        name: "FK_Forums_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Posts",
                 columns: table => new
                 {
                     IdPost = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PublishedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdUsercreated = table.Column<int>(type: "int", nullable: false),
-                    IdForum = table.Column<int>(type: "int", nullable: false),
-                    ForumIdForum = table.Column<int>(type: "int", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ForumId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Posts", x => x.IdPost);
                     table.ForeignKey(
-                        name: "FK_Posts_Forums_ForumIdForum",
-                        column: x => x.ForumIdForum,
+                        name: "FK_Posts_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Posts_Forums_ForumId",
+                        column: x => x.ForumId,
                         principalTable: "Forums",
-                        principalColumn: "IdForum");
+                        principalColumn: "IdForum",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -203,7 +212,7 @@ namespace MyForum.DAL.Migrations
                     IdComment = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IdUsercreated = table.Column<int>(type: "int", nullable: false),
+                    IdUsercreated = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Datecreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IdPost = table.Column<int>(type: "int", nullable: false),
                     PostIdPost = table.Column<int>(type: "int", nullable: true)
@@ -263,9 +272,19 @@ namespace MyForum.DAL.Migrations
                 column: "PostIdPost");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Posts_ForumIdForum",
+                name: "IX_Forums_UserId",
+                table: "Forums",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Posts_ForumId",
                 table: "Posts",
-                column: "ForumIdForum");
+                column: "ForumId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Posts_UserId",
+                table: "Posts",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -292,13 +311,13 @@ namespace MyForum.DAL.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Posts");
 
             migrationBuilder.DropTable(
                 name: "Forums");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

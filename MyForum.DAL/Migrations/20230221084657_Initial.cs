@@ -4,24 +4,24 @@
 
 namespace MyForum.DAL.Migrations
 {
-    public partial class init5 : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
                 name: "UserId",
-                table: "Forums",
+                table: "Comments",
                 type: "nvarchar(450)",
                 nullable: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Forums_UserId",
-                table: "Forums",
+                name: "IX_Comments_UserId",
+                table: "Comments",
                 column: "UserId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Forums_AspNetUsers_UserId",
-                table: "Forums",
+                name: "FK_Comments_AspNetUsers_UserId",
+                table: "Comments",
                 column: "UserId",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id");
@@ -30,16 +30,16 @@ namespace MyForum.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Forums_AspNetUsers_UserId",
-                table: "Forums");
+                name: "FK_Comments_AspNetUsers_UserId",
+                table: "Comments");
 
             migrationBuilder.DropIndex(
-                name: "IX_Forums_UserId",
-                table: "Forums");
+                name: "IX_Comments_UserId",
+                table: "Comments");
 
             migrationBuilder.DropColumn(
                 name: "UserId",
-                table: "Forums");
+                table: "Comments");
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kKubhDweMCjZclOb2Igueu7u67BR40cNIICbxluM3qk=",
+  "Hash": "cgYJEc8YgpiCwp1OGfmNtTkf/DirhgHG9ednqDKs6fg=",
   "Source": "MyForum.Web",
   "BasePath": "_content/MyForum.Web",
   "Mode": "Default",
@@ -1120,6 +1120,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\6858f49a-4810-412a-aee6-688eff19eefa.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Asus\\Desktop\\IRM-2\\C#\\Learn\\1\\MyForum\\MyForum.Web\\wwwroot\\Images\\b3dc47db-2996-40d3-ba16-ce9a8c76c4e5.jpg",
+      "SourceId": "MyForum.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Asus\\Desktop\\IRM-2\\C#\\Learn\\1\\MyForum\\MyForum.Web\\wwwroot\\",
+      "BasePath": "_content/MyForum.Web",
+      "RelativePath": "Images/b3dc47db-2996-40d3-ba16-ce9a8c76c4e5.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\b3dc47db-2996-40d3-ba16-ce9a8c76c4e5.jpg"
     },
     {
       "Identity": "C:\\Users\\Asus\\Desktop\\IRM-2\\C#\\Learn\\1\\MyForum\\MyForum.Web\\wwwroot\\Images\\ca1cb867-82c9-4117-977c-5aedb57001bf.jpg",
